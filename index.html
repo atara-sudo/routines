@@ -1948,22 +1948,105 @@ body { margin: 0; background: #0c0d0f; color: #e9ebee; font-family: var(--font-a
   background: #0f1113; border: 1px solid rgba(255,255,255,.2); border-radius: 12px; padding: 10px 14px; font-size: 13px; color: #e9ebee; box-shadow: 0 12px 30px rgba(0,0,0,.7); text-align: center; }
 @media (min-width: 900px) { body { padding-top: 24px; } }
 @media (max-width: 520px) { .rt-row { padding: 9px 10px; gap: 8px; } .rt-mini { max-width: 4.6rem; } }
+/* ---------- Courses façon Bring! ---------- */
+.co-view { --co-red: #ee524f; --co-red2: #d9433f; --co-slate: #36444b; --co-slate2: #2c383e; padding-top: clamp(16px, 3vw, 32px); }
+.co-head { margin-bottom: 14px; }
+.co-head .hb-title { margin: 6px 0 4px; }
+.co-search { position: sticky; top: max(8px, env(safe-area-inset-top)); z-index: 5; display: flex; align-items: center; gap: 8px; margin: 0 0 16px; padding: 0 6px 0 12px;
+  border-radius: 14px; background: #f2f4f6; box-shadow: 0 8px 24px -10px rgba(0,0,0,.8); }
+.co-mag svg { width: 19px; height: 19px; fill: none; stroke: #6b7279; stroke-width: 2; stroke-linecap: round; display: block; }
+.co-search input { flex: 1; min-width: 0; border: 0; background: none; outline: none; font: inherit; font-size: 16px; color: #111316; padding: 13px 0; -webkit-appearance: none; appearance: none; }
+.co-search input::placeholder { color: #80868d; }
+.co-search input::-webkit-search-cancel-button { display: none; }
+.co-search button { width: 30px; height: 30px; border-radius: 50%; border: 0; background: #d6dade; color: #333; font-size: 18px; line-height: 1; cursor: pointer; }
+.co-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 6px; }
+.co-tile { position: relative; aspect-ratio: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 8px 6px;
+  border: 0; border-radius: 10px; background: var(--co-red); color: #fff; font: inherit; cursor: pointer; overflow: hidden;
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; touch-action: manipulation; transition: transform .12s, background .15s, opacity .17s; }
+.co-tile:active { transform: scale(.93); }
+.co-tile:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.co-tile .ic { font-size: clamp(28px, 8vw, 36px); line-height: 1.05; }
+.co-tile .nm { font-size: 12.5px; font-weight: 600; line-height: 1.15; text-align: center; max-width: 100%; overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.co-tile .sp { font-size: 11px; line-height: 1.1; opacity: .9; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.co-tile .who { position: absolute; top: 5px; left: 5px; width: 17px; height: 17px; border-radius: 50%; background: rgba(0,0,0,.22); font-size: 9.5px; font-weight: 700; display: grid; place-items: center; }
+.co-tile .ed { position: absolute; top: 2px; right: 4px; font-size: 15px; line-height: 1; padding: 2px 3px; opacity: 0; transition: opacity .15s; }
+@media (hover: hover) { .co-tile:hover { filter: brightness(1.08); } .co-tile:hover .ed { opacity: .85; } }
+.co-tile.cat { background: var(--co-slate); }
+.co-tile.cat.on { background: var(--co-red); }
+.co-tile.new { background: transparent; border: 2px dashed var(--co-red); color: #ffd2d0; }
+.co-tile.out { transform: scale(.6); opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .co-tile.pop { animation: coPop .32s cubic-bezier(.2,.9,.3,1.3); }
+  @keyframes coPop { from { transform: scale(.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+}
+.co-empty { display: grid; justify-items: center; gap: 6px; text-align: center; padding: 26px 16px; border: 1px dashed var(--m-line2); border-radius: 14px; color: var(--m-mut); font-size: 13px; line-height: 1.5; }
+.co-empty .big { font-size: 40px; }
+.co-empty b { color: var(--m-hi); font-weight: 500; font-size: 15px; }
+.co-hint { color: var(--m-dim); font-size: 11.5px; margin: 10px 2px 0; }
+.co-block { margin-top: 22px; }
+.co-block > h2 { margin: 0 0 10px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .2em; color: var(--m-mut); }
+.co-sec { border-top: 1px solid var(--m-line); }
+.co-sec:last-child { border-bottom: 1px solid var(--m-line); }
+.co-sec-h { display: flex; align-items: center; gap: 12px; width: 100%; padding: 13px 4px; border: 0; background: none; color: var(--m-fg); font: inherit; font-size: 15px; cursor: pointer; text-align: left; }
+.co-sec-h .i { font-size: 22px; width: 28px; text-align: center; }
+.co-sec-h .t { flex: 1; }
+.co-sec-h .c { color: var(--m-mut); font-size: 12px; }
+.co-sec-h .ch { color: var(--m-dim); font-size: 20px; transition: transform .2s; }
+.co-sec.open .co-sec-h .ch { transform: rotate(90deg); }
+.co-sec .co-grid { padding: 2px 0 14px; }
+.co-snack { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(92px + env(safe-area-inset-bottom)); z-index: 30; display: flex; align-items: center; gap: 14px;
+  width: max-content; max-width: calc(100vw - 32px); padding: 10px 10px 10px 16px; border-radius: 12px; background: #f2f4f6; color: #111316; font-size: 14px; box-shadow: 0 12px 30px rgba(0,0,0,.6); }
+.co-snack button { border: 0; background: none; color: var(--co-red2); font: inherit; font-weight: 700; font-size: 14px; padding: 6px 8px; cursor: pointer; }
+.co-sheet-bg { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,.55); display: flex; align-items: flex-end; justify-content: center; }
+.co-sheet { width: min(520px, 100%); box-sizing: border-box; background: #1b1e22; border: 1px solid var(--m-line2); border-bottom: 0; border-radius: 20px 20px 0 0;
+  padding: 8px 18px calc(18px + env(safe-area-inset-bottom)); box-shadow: 0 -20px 50px rgba(0,0,0,.6); transform: translateY(30px); opacity: 0; transition: transform .22s cubic-bezier(.2,.8,.2,1), opacity .18s; }
+.co-sheet-bg.in .co-sheet { transform: none; opacity: 1; }
+@media (min-width: 640px) { .co-sheet-bg { align-items: center; } .co-sheet { border-radius: 20px; border-bottom: 1px solid var(--m-line2); padding-bottom: 18px; } }
+.co-sh-grip { width: 38px; height: 5px; border-radius: 99px; background: #3a3f45; margin: 0 auto 12px; }
+.co-sh-head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.co-sh-ic { width: 52px; height: 52px; flex: none; border-radius: 12px; background: var(--co-red); display: grid; place-items: center; font-size: 30px; }
+.co-sh-head .hb-in { flex: 1; min-width: 0; width: auto; text-align: left; font-size: 17px; padding: 10px 12px; }
+.co-sh-meta { color: var(--m-mut); font-size: 12px; margin: 6px 0 12px; min-height: 1em; }
+.co-sh-chips { margin: -4px 0 14px; }
+.co-sh-btns { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; margin-top: 6px; }
+.co-sh-btns .hb-btn { padding: 11px 16px; font-size: 14px; }
+@media (max-width: 520px) {
+  .co-view.hb { padding: 14px 10px 18px; border-radius: 16px; }
+  .co-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; }
+  body { padding-left: 8px; padding-right: 8px; }
+}
+@media (max-width: 340px) { .co-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 900px) { .co-grid { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; } }
 </style>
-<div class="hb rt-view" id="v-courses" hidden>
-  <header class="hb-head rt-head">
+<div class="hb rt-view co-view" id="v-courses" hidden>
+  <header class="co-head">
     <div><div class="hb-date">Foyer</div><h1 class="hb-title">Courses</h1><p class="hb-take" id="co-take">—</p></div>
   </header>
-  <form class="rt-add" id="co-form" autocomplete="off">
-    <input class="hb-in rt-grow" id="co-in" type="text" placeholder="Ajouter un article…" enterkeyhint="done" aria-label="Article">
-    <input class="hb-in rt-qte" id="co-qte" type="text" placeholder="Qté" aria-label="Quantité">
-    <button class="hb-btn rt-main" type="submit">Ajouter</button>
-  </form>
-  <div class="rt-sugg" id="co-sugg-wrap" hidden><span class="hb-sub">Souvent achetés</span><div class="hb-chips" id="co-sugg"></div></div>
-  <div id="co-list"></div>
-  <section class="hb-sec" id="co-done-sec" hidden>
-    <div class="hb-sec-head"><h2>Dans le panier</h2><button class="hb-btn" id="co-clear" type="button">Vider le panier</button></div>
-    <div class="rt-rows" id="co-done"></div>
-  </section>
+  <div class="co-search">
+    <span class="co-mag" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span>
+    <input id="co-q" type="search" placeholder="Que faut-il acheter ?" enterkeyhint="done" autocomplete="off" autocapitalize="sentences" aria-label="Ajouter un article">
+    <button type="button" id="co-q-x" aria-label="Effacer" hidden>×</button>
+  </div>
+  <div id="co-res" hidden></div>
+  <div id="co-main">
+    <div id="co-list"></div>
+    <p class="co-hint">Touche un article pour le marquer acheté. Appui long pour la quantité ou le rayon.</p>
+    <section class="co-block" id="co-recent-sec" hidden><h2>Récemment achetés</h2><div id="co-recent"></div></section>
+    <section class="co-block"><h2>Catalogue</h2><div id="co-cat"></div></section>
+  </div>
+  <div class="co-snack" id="co-snack" role="status" hidden><span id="co-snack-t"></span><button type="button" id="co-snack-b">Annuler</button></div>
+  <div class="co-sheet-bg" id="co-sheet" hidden>
+    <form class="co-sheet" id="co-sh-form" role="dialog" aria-modal="true" aria-label="Détails de l’article" autocomplete="off">
+      <div class="co-sh-grip" aria-hidden="true"></div>
+      <div class="co-sh-head"><span class="co-sh-ic" id="co-sh-ic"></span><input class="hb-in" id="co-sh-nom" type="text" aria-label="Nom"><button type="button" class="rt-x" id="co-sh-x" aria-label="Fermer">×</button></div>
+      <p class="co-sh-meta" id="co-sh-meta"></p>
+      <label class="rt-field"><span>Précision</span><input class="hb-in" id="co-sh-qte" type="text" placeholder="ex. 2, 500 g, bio, marque…"></label>
+      <div class="hb-chips co-sh-chips" id="co-sh-chips"></div>
+      <label class="rt-field"><span>Rayon</span><select class="hb-in hb-sel" id="co-sh-rayon"></select></label>
+      <div class="co-sh-btns"><button type="button" class="hb-btn" id="co-sh-del">Retirer de la liste</button><button type="submit" class="hb-btn rt-main" id="co-sh-ok">Enregistrer</button></div>
+    </form>
+  </div>
 </div>
 
 <div class="hb rt-view" id="v-taches" hidden>
@@ -2088,82 +2171,213 @@ body { margin: 0; background: #0c0d0f; color: #e9ebee; font-family: var(--font-a
     if (view === 'reglages') drawReglages();
   }
 
-  // ---------------- Courses ----------------
-  const RAYONS = [['fruits', 'Fruits & légumes'], ['viande', 'Viandes & poissons'], ['frais', 'Frais & crèmerie'], ['boulangerie', 'Boulangerie'],
-    ['epicerie', 'Épicerie'], ['surgeles', 'Surgelés'], ['boissons', 'Boissons'], ['maison', 'Hygiène & maison'], ['animaux', 'Animaux'], ['autres', 'Autres']];
-  const RNAME = Object.fromEntries(RAYONS);
+  // ---------------- Courses (façon Bring!) ----------------
+  const RAYONS = [['fruits', 'Fruits & légumes', '🥕'], ['viande', 'Viandes & poissons', '🥩'], ['frais', 'Frais & crèmerie', '🧀'], ['boulangerie', 'Boulangerie', '🥖'],
+    ['epicerie', 'Épicerie', '🥫'], ['surgeles', 'Surgelés', '🧊'], ['boissons', 'Boissons', '🧃'], ['maison', 'Hygiène & maison', '🧻'], ['animaux', 'Chien', '🐕'], ['autres', 'Autres', '🛒']];
+  const RNAME = Object.fromEntries(RAYONS.map(([r, l]) => [r, l]));
+  const RIC = Object.fromEntries(RAYONS.map(([r, , i]) => [r, i]));
+  const CAT_SRC = {
+    fruits: 'Pommes🍎|Bananes🍌|Oranges🍊|Citrons🍋|Fraises🍓|Raisin🍇|Poires🍐|Kiwis🥝|Myrtilles🫐|Avocats🥑|Tomates🍅|Salade🥬|Carottes🥕|Concombre🥒|Courgettes🥒|Brocoli🥦|Épinards🥬|Pommes de terre🥔|Patates douces🍠|Oignons🧅|Ail🧄|Poivrons🫑|Champignons🍄|Haricots verts🫛|Maïs🌽|Herbes fraîches🌿',
+    viande: 'Poulet🍗|Blanc de poulet🐔|Dinde🦃|Steak haché🍔|Bœuf🥩|Jambon🍖|Lardons🥓|Bacon🥓|Saucisses🌭|Saumon🐟|Thon🐟|Cabillaud🐠|Crevettes🍤',
+    frais: 'Lait🥛|Œufs🥚|Beurre🧈|Fromage🧀|Mozzarella🧀|Parmesan🧀|Yaourts🥣|Skyr🥣|Fromage blanc🥣|Crème fraîche🍶|Tofu🍱|Houmous🫘',
+    boulangerie: 'Pain🍞|Baguette🥖|Pain de mie🍞|Croissants🥐|Brioche🥯|Wraps🌯|Bagels🥯',
+    epicerie: 'Pâtes🍝|Riz🍚|Farine🌾|Sucre🍬|Sel🧂|Poivre🧂|Huile d’olive🫒|Vinaigre🍶|Épices🌶️|Bouillon🍲|Sauce tomate🥫|Conserves🥫|Lentilles🫘|Pois chiches🫘|Céréales🥣|Flocons d’avoine🌾|Café☕|Thé🍵|Chocolat🍫|Biscuits🍪|Confiture🍯|Miel🍯|Beurre de cacahuète🥜|Amandes🌰|Noix🌰|Chips🍟|Ketchup🥫|Moutarde🫙|Mayonnaise🫙|Whey💪|Créatine💊',
+    surgeles: 'Glace🍨|Légumes surgelés🥦|Frites🍟|Pizza🍕|Poisson pané🐟|Fruits rouges surgelés🫐',
+    boissons: 'Eau💧|Eau gazeuse🫧|Jus d’orange🧃|Lait d’amande🥛|Coca🥤|Bière🍺|Vin🍷|Sirop🍹',
+    maison: 'Papier toilette🧻|Essuie-tout🧻|Mouchoirs🤧|Liquide vaisselle🧽|Éponges🧽|Pastilles lave-vaisselle🫧|Lessive🧺|Adoucissant🧴|Sacs poubelle🗑️|Javel🧴|Nettoyant🧼|Dentifrice🪥|Brosse à dents🪥|Shampoing🧴|Gel douche🧼|Savon🧼|Déodorant🧴|Rasoirs🪒|Ampoules💡|Piles🔋',
+    animaux: 'Croquettes🦴|Pâtée🥫|Friandises🐕|Os à mâcher🦴|Sacs à crottes🐾|Shampoing chien🛁',
+  };
+  const EMOJI_RE = /(\p{Extended_Pictographic}(?:️|‍\p{Extended_Pictographic})*)+$/u;
+  const CATALOG = [];
+  Object.entries(CAT_SRC).forEach(([r, s]) => s.split('|').forEach((x) => { const m = x.match(EMOJI_RE); CATALOG.push({ nom: x.slice(0, m.index), ic: m[0], rayon: r }); }));
+  const CAT_BY = new Map(CATALOG.map((c) => [norm(c.nom), c]));
+  const CAT_LONG = CATALOG.slice().sort((a, b) => b.nom.length - a.nom.length);
   const RRULES = [
-    [/croquette|patee|litiere|friandise chien|os a macher|chien|chat/, 'animaux'],
-    [/surgele|glace|sorbet|frites surg|poisson pane|pizza surg/, 'surgeles'],
-    [/eau|jus|soda|coca|biere|vin|sirop|cafe|the\b|tisane|limonade|lait d'amande|boisson/, 'boissons'],
-    [/pain|baguette|brioche|croissant|viennoiserie|pain de mie|wrap|tortilla/, 'boulangerie'],
-    [/poulet|dinde|boeuf|steak|viande|jambon|lardon|saucisse|bacon|porc|veau|agneau|saumon|thon frais|poisson|crevette|cabillaud|blanc de/, 'viande'],
-    [/lait|yaourt|skyr|fromage|beurre|creme|oeuf|mozzarella|emmental|comte|parmesan|feta|ricotta|fromage blanc|petit suisse|tofu/, 'frais'],
-    [/pomme de terre|patate|pomme|banane|orange|citron|fraise|framboise|myrtille|raisin|poire|kiwi|mangue|ananas|avocat|tomate|salade|carotte|courgette|oignon|ail\b|poivron|concombre|brocoli|epinard|champignon|haricot vert|aubergine|chou|poireau|radis|persil|basilic|coriandre|menthe|fruit|legume|clementine|melon|peche|abricot/, 'fruits'],
-    [/papier toilette|pq|essuie|sopalin|lessive|adoucissant|liquide vaisselle|eponge|sac poubelle|javel|nettoyant|dentifrice|shampoing|gel douche|savon|deodorant|rasoir|coton|mouchoir|brosse|lave-vaisselle|tablette|desodorisant|aluminium|film/, 'maison'],
-    [/riz|pate|pates|farine|sucre|sel\b|poivre|huile|vinaigre|conserve|thon|sauce|ketchup|mayonnaise|moutarde|cereale|flocon|avoine|muesli|chocolat|biscuit|gateau|confiture|miel|whey|proteine|barre|amande|noix|noisette|cacahuete|beurre de cacahuete|lentille|pois chiche|haricot|semoule|quinoa|bouillon|epice|chips|compote|creatine/, 'epicerie'],
+    [/croquette|patee|friandise|chien/, 'animaux'], [/surgele|glace|sorbet/, 'surgeles'],
+    [/\beau\b|jus|soda|coca|biere|vin\b|sirop|limonade|boisson/, 'boissons'],
+    [/pain|baguette|brioche|croissant|viennoiserie|wrap|tortilla/, 'boulangerie'],
+    [/poulet|dinde|boeuf|steak|viande|jambon|lardon|saucisse|bacon|porc|veau|agneau|saumon|poisson|crevette|cabillaud/, 'viande'],
+    [/lait|yaourt|skyr|fromage|beurre|creme|oeuf|mozzarella|emmental|comte|feta|ricotta/, 'frais'],
+    [/pomme|banane|orange|citron|fraise|framboise|raisin|poire|kiwi|mangue|ananas|avocat|tomate|salade|carotte|courgette|oignon|poivron|concombre|brocoli|epinard|champignon|haricot vert|aubergine|chou|poireau|radis|persil|basilic|coriandre|menthe|fruit|legume|clementine|melon|peche|abricot/, 'fruits'],
+    [/papier|essuie|sopalin|lessive|adoucissant|vaisselle|eponge|poubelle|javel|nettoyant|dentifrice|shampoing|douche|savon|deodorant|rasoir|coton|mouchoir|brosse|ampoule|pile/, 'maison'],
+    [/riz|pate|farine|sucre|sel\b|poivre|huile|vinaigre|conserve|sauce|ketchup|mayonnaise|moutarde|cereale|flocon|avoine|chocolat|biscuit|gateau|confiture|miel|whey|proteine|barre|amande|noix|noisette|cacahuete|lentille|pois chiche|semoule|quinoa|bouillon|epice|chips|compote|cafe|the\b/, 'epicerie'],
   ];
-  const guessRayon = (name) => { const n = norm(name); for (const [re, r] of RRULES) if (re.test(n)) return r; return 'autres'; };
+  const catMatch = (name) => { const n = norm(name); if (!n) return null; return CAT_BY.get(n) || CAT_LONG.find((c) => n.indexOf(norm(c.nom)) >= 0) || CAT_LONG.find((c) => n.length > 3 && norm(c.nom).indexOf(n) === 0) || null; };
+  const guessRayon = (name) => { const c = catMatch(name); if (c) return c.rayon; const n = norm(name); for (const [re, r] of RRULES) if (re.test(n)) return r; return 'autres'; };
+  const iconFor = (name, rayon) => { const c = catMatch(name); return c ? c.ic : (RIC[rayon] || '🛒'); };
+  // « lait 2 L », « 3 avocats », « œufs x12 » -> nom + précision
+  function parseEntry(t) {
+    t = String(t || '').trim().replace(/\s+/g, ' ');
+    let m = t.match(/^(.+?)\s+((?:x\s?\d+)|(?:\d+(?:[.,]\d+)?\s?(?:kg|g|l|cl|ml|x|pcs?|paquets?|boites?|boîtes?|bouteilles?|packs?|tranches?)?))$/i);
+    if (m && !/^\d+$/.test(m[1])) return { nom: cap(m[1]), qte: m[2] };
+    m = t.match(/^(\d+(?:[.,]\d+)?\s?(?:kg|g|l|cl|ml|x)?)\s+(.+)$/i);
+    if (m) return { nom: cap(m[2]), qte: m[1] };
+    return { nom: cap(t), qte: '' };
+  }
   const items = () => S.list('courses/').filter(([, d]) => d && d.nom).map(([id, d]) => Object.assign({ id }, d));
-
-  function addItem(name, qte) {
-    name = String(name || '').trim().replace(/\s+/g, ' ');
-    if (!name) return;
-    const id = slug(name) || uid();
-    const old = S.get('courses/' + id);
-    S.put('courses/' + id, { nom: old ? old.nom : cap(name), rayon: (old && old.rayon) || guessRayon(name), qte: String(qte || '').trim(), fait: false, arch: false, n: (old && old.n) || 0, par: me(), ts: Date.now() });
-    drawCourses(); badges();
+  const RORDER = Object.fromEntries(RAYONS.map(([r], i) => [r, i]));
+  function products() {
+    const map = new Map();
+    CATALOG.forEach((c) => map.set(slug(c.nom), { id: slug(c.nom), nom: c.nom, rayon: c.rayon, ic: c.ic, builtin: true, inList: false, qte: '', n: 0, achat: 0 }));
+    items().forEach((d) => {
+      const p = map.get(d.id) || { id: d.id, builtin: false };
+      p.nom = d.nom; p.rayon = d.rayon || p.rayon || guessRayon(d.nom); p.ic = d.ic || p.ic || iconFor(d.nom, p.rayon);
+      p.doc = d; p.inList = !d.arch && !d.fait; p.qte = d.qte || ''; p.par = d.par || ''; p.n = d.n || 0;
+      p.achat = d.achat || ((d.arch || d.fait) ? (d.ts || 1) : 0);
+      map.set(d.id, p);
+    });
+    return Array.from(map.values());
   }
-  function itemRow(it) {
-    const row = el('div', 'rt-row' + (it.fait ? ' done' : ''));
-    const save = (patch) => { const cur = S.get('courses/' + it.id); if (!cur) return; S.put('courses/' + it.id, Object.assign({}, cur, patch)); drawCourses(); badges(); };
-    const chk = el('button', 'rt-check'); chk.type = 'button'; chk.innerHTML = CHECK; chk.setAttribute('aria-label', (it.fait ? 'Remettre ' : 'Cocher ') + it.nom);
-    const toggle = () => save({ fait: !it.fait, faitPar: !it.fait ? me() : '' });
-    chk.addEventListener('click', toggle);
-    const name = el('button', 'rt-name', it.nom); name.type = 'button'; name.addEventListener('click', toggle);
-    if (it.par && it.par !== me() && !it.fait) name.append(el('small', null, 'ajouté par ' + it.par));
-    if (it.fait && it.faitPar && it.faitPar !== me()) name.append(el('small', null, 'pris par ' + it.faitPar));
-    row.append(chk, name);
-    if (it.qte) row.append(el('span', 'rt-tag q', it.qte));
-    if (!it.fait) {
-      const sel = el('select', 'rt-mini'); sel.setAttribute('aria-label', 'Rayon de ' + it.nom);
-      RAYONS.forEach(([r, label]) => { const o = el('option', null, label); o.value = r; sel.append(o); });
-      sel.value = it.rayon || 'autres';
-      sel.addEventListener('change', () => save({ rayon: sel.value }));
-      row.append(sel);
-    }
-    const x = el('button', 'rt-x', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Supprimer ' + it.nom);
-    x.addEventListener('click', () => { S.del('courses/' + it.id); drawCourses(); badges(); });
-    row.append(x);
-    return row;
+  const byRayon = (a, b) => (RORDER[a.rayon] ?? 99) - (RORDER[b.rayon] ?? 99) || a.nom.localeCompare(b.nom, 'fr');
+  const justAdded = new Set();
+  const putItem = (p, patch) => { S.put('courses/' + p.id, Object.assign({ nom: p.nom, rayon: p.rayon }, p.doc || {}, patch)); };
+  function addProduct(p, qte) {
+    putItem(p, { nom: p.nom, rayon: p.rayon, qte: qte || '', fait: false, arch: false, par: me(), ts: Date.now() });
+    justAdded.add(p.id); drawCourses(); badges();
   }
+  function unlist(p) { putItem(p, { arch: true, fait: false }); drawCourses(); badges(); }
+  function buy(p, tileEl) {
+    const before = p.doc ? Object.assign({}, p.doc) : null;
+    delete (before || {}).id;
+    const done = () => {
+      putItem(p, { arch: true, fait: false, n: (p.n || 0) + 1, achat: Date.now(), achetePar: me() });
+      drawCourses(); badges();
+      snack(p.nom + ' acheté', () => { if (before) S.put('courses/' + p.id, before); justAdded.add(p.id); drawCourses(); badges(); });
+    };
+    if (tileEl && !reduceMotion) { tileEl.classList.add('out'); setTimeout(done, 170); } else done();
+  }
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let snackTimer = null;
+  function snack(msg, undo) {
+    const s = $('co-snack'); $('co-snack-t').textContent = msg; s.hidden = false;
+    $('co-snack-b').onclick = () => { s.hidden = true; clearTimeout(snackTimer); undo(); };
+    clearTimeout(snackTimer); snackTimer = setTimeout(() => { s.hidden = true; }, 4500);
+  }
+  // appui court = action, appui long (ou clic droit) = détails
+  function bindTile(b, tap, long) {
+    let t = null, sx = 0, sy = 0, fired = false;
+    const cancel = () => clearTimeout(t);
+    b.addEventListener('pointerdown', (e) => {
+      if (e.button > 0) return; fired = false; sx = e.clientX; sy = e.clientY; cancel();
+      t = setTimeout(() => { fired = true; if (navigator.vibrate) navigator.vibrate(10); long(); }, 450);
+    });
+    b.addEventListener('pointermove', (e) => { if (Math.abs(e.clientX - sx) > 8 || Math.abs(e.clientY - sy) > 8) cancel(); });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach((ev) => b.addEventListener(ev, cancel));
+    b.addEventListener('contextmenu', (e) => { e.preventDefault(); cancel(); if (!fired && $('co-sheet').hidden) { fired = true; long(); } });
+    b.addEventListener('click', (e) => {
+      if (fired) { fired = false; return; }
+      if (e.target.closest('.ed')) { long(); return; }
+      tap();
+    });
+  }
+  function tile(p, mode) {
+    const list = mode === 'list';
+    const b = el('button', 'co-tile' + (list ? '' : ' cat') + (!list && p.inList ? ' on' : '') + (mode === 'new' ? ' new' : '') + (list && justAdded.has(p.id) ? ' pop' : ''));
+    b.type = 'button'; b.dataset.id = p.id;
+    b.append(el('span', 'ic', p.ic), el('span', 'nm', p.nom));
+    if (mode === 'new') b.append(el('span', 'sp', p.qte ? p.qte + ' · nouveau' : 'Ajouter'));
+    else if (p.qte && (list || p.inList)) b.append(el('span', 'sp', p.qte));
+    if (list && p.par && p.par !== me()) { const w = el('span', 'who', p.par.charAt(0).toUpperCase()); w.title = 'Ajouté par ' + p.par; b.append(w); }
+    if (mode !== 'new') { const ed = el('span', 'ed', '⋯'); ed.setAttribute('aria-hidden', 'true'); b.append(ed); }
+    b.setAttribute('aria-label', (list ? 'Acheté : ' : p.inList ? 'Retirer de la liste : ' : 'Ajouter : ') + p.nom + (p.qte ? ', ' + p.qte : ''));
+    bindTile(b, () => {
+      if (mode === 'new') { addProduct(p, p.qte); clearSearch(); }
+      else if (list) buy(p, b);
+      else if (p.inList) unlist(p);
+      else { addProduct(p, ''); if ($('co-q').value) clearSearch(); }
+    }, () => { if (mode === 'new') addProduct(p, p.qte); openEditor(mode === 'new' ? p.id : p); });
+    return b;
+  }
+  const grid = (ps, mode) => { const g = el('div', 'co-grid'); ps.forEach((p) => g.append(tile(p, mode))); return g; };
+  let coOpen = LS.get('rt.coOpen', {}) || {};
   function drawCourses() {
-    const all = items();
-    const todo = all.filter((i) => !i.arch && !i.fait), done = all.filter((i) => !i.arch && i.fait), arch = all.filter((i) => i.arch);
-    $('co-take').textContent = todo.length
-      ? todo.length + (todo.length > 1 ? ' articles à prendre' : ' article à prendre') + (done.length ? ' · ' + done.length + ' dans le panier' : '') + '.'
-      : (done.length ? 'Tout est dans le panier. Tu peux le vider une fois rentré.' : 'La liste est vide.');
-    const box = $('co-list');
-    if (!todo.length) box.replaceChildren(el('div', 'rt-empty', done.length ? '' : 'Ajoute un article ci-dessus. La liste est partagée : ce que l’un ajoute apparaît chez l’autre.'));
-    else box.replaceChildren(...RAYONS.filter(([r]) => todo.some((i) => (i.rayon || 'autres') === r)).map(([r, label]) => {
-      const g = el('div', 'rt-grp'); const list = todo.filter((i) => (i.rayon || 'autres') === r).sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
-      const h = el('h3', null, label); h.append(el('b', null, String(list.length)));
-      const rows = el('div', 'rt-rows'); list.forEach((i) => rows.append(itemRow(i)));
-      g.append(h, rows); return g;
+    const all = products();
+    const list = all.filter((p) => p.inList).sort(byRayon);
+    $('co-take').textContent = list.length ? list.length + (list.length > 1 ? ' articles à acheter' : ' article à acheter') : 'Rien à acheter pour l’instant.';
+    const q = $('co-q').value.trim();
+    $('co-q-x').hidden = !q;
+    $('co-main').hidden = !!q; $('co-res').hidden = !q;
+    if (q) {
+      const e = parseEntry(q), qn = norm(e.nom);
+      const hits = all.filter((p) => norm(p.nom).indexOf(qn) >= 0 || (p.ic && qn.length > 2 && norm(RNAME[p.rayon] || '').indexOf(qn) === 0))
+        .sort((a, b) => (norm(b.nom).indexOf(qn) === 0) - (norm(a.nom).indexOf(qn) === 0) || (b.n || 0) - (a.n || 0) || a.nom.localeCompare(b.nom, 'fr')).slice(0, 40);
+      const exact = all.find((p) => norm(p.nom) === qn);
+      const out = [];
+      if (!exact && qn) { const r = guessRayon(e.nom); out.push({ id: slug(e.nom) || uid(), nom: e.nom, rayon: r, ic: iconFor(e.nom, r), qte: e.qte, builtin: false, n: 0, _new: true }); }
+      const g = el('div', 'co-grid');
+      out.forEach((p) => g.append(tile(p, 'new')));
+      hits.forEach((p) => g.append(tile(p, 'cat')));
+      $('co-res').replaceChildren(g);
+      return;
+    }
+    $('co-list').replaceChildren(list.length ? grid(list, 'list') : (() => {
+      const d = el('div', 'co-empty'); d.append(el('div', 'big', '🛒'), el('b', null, 'Ta liste est vide'), el('span', null, 'Touche un article ci-dessous ou tape-le dans la recherche. Ce que l’un ajoute apparaît chez l’autre.')); return d;
+    })());
+    const recent = all.filter((p) => !p.inList && p.achat).sort((a, b) => b.achat - a.achat || (b.n || 0) - (a.n || 0)).slice(0, 18);
+    $('co-recent-sec').hidden = !recent.length;
+    $('co-recent').replaceChildren(grid(recent, 'cat'));
+    $('co-cat').replaceChildren(...RAYONS.map(([r, label, ic]) => {
+      const ps = all.filter((p) => p.rayon === r).sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
+      if (!ps.length) return document.createTextNode('');
+      const sec = el('section', 'co-sec' + (coOpen[r] ? ' open' : ''));
+      const h = el('button', 'co-sec-h'); h.type = 'button'; h.setAttribute('aria-expanded', String(!!coOpen[r]));
+      const nIn = ps.filter((p) => p.inList).length;
+      h.append(el('span', 'i', ic), el('span', 't', label), el('span', 'c', nIn ? nIn + ' sur la liste' : String(ps.length)), el('span', 'ch', '›'));
+      h.addEventListener('click', () => { coOpen[r] = !coOpen[r]; LS.set('rt.coOpen', coOpen); drawCourses(); });
+      sec.append(h);
+      if (coOpen[r]) sec.append(grid(ps, 'cat'));
+      return sec;
     }));
-    $('co-done-sec').hidden = !done.length;
-    $('co-done').replaceChildren(...done.sort((a, b) => a.nom.localeCompare(b.nom, 'fr')).map(itemRow));
-    // suggestions : articles déjà achetés, les plus fréquents d'abord, filtrés par ce que tu tapes
-    const q = norm($('co-in').value);
-    const sugg = arch.filter((i) => !q || norm(i.nom).indexOf(q) >= 0).sort((a, b) => (b.n || 0) - (a.n || 0) || a.nom.localeCompare(b.nom, 'fr')).slice(0, 14);
-    $('co-sugg-wrap').hidden = !sugg.length;
-    $('co-sugg').replaceChildren(...sugg.map((i) => { const c = el('button', 'hb-chip', '+ ' + i.nom); c.type = 'button'; c.addEventListener('click', () => { addItem(i.nom, ''); $('co-in').value = ''; drawCourses(); }); return c; }));
+    setTimeout(() => justAdded.clear(), 400);
   }
-  $('co-form').addEventListener('submit', (ev) => { ev.preventDefault(); addItem($('co-in').value, $('co-qte').value); $('co-in').value = ''; $('co-qte').value = ''; $('co-in').focus(); drawCourses(); });
-  $('co-in').addEventListener('input', () => drawCourses());
-  $('co-clear').addEventListener('click', () => {
-    items().filter((i) => !i.arch && i.fait).forEach((i) => { const c = S.get('courses/' + i.id); S.put('courses/' + i.id, Object.assign({}, c, { fait: false, arch: true, qte: '', n: (c.n || 0) + 1 })); });
-    drawCourses(); badges(); toast('Panier vidé. Les articles restent proposés dans « Souvent achetés ».');
+  function clearSearch() { $('co-q').value = ''; drawCourses(); }
+  $('co-q').addEventListener('input', () => drawCourses());
+  $('co-q-x').addEventListener('click', () => { clearSearch(); $('co-q').focus(); });
+  $('co-q').addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape') { clearSearch(); return; }
+    if (ev.key !== 'Enter') return;
+    ev.preventDefault();
+    const e = parseEntry($('co-q').value); if (!e.nom) return;
+    const all = products(); const ex = all.find((p) => norm(p.nom) === norm(e.nom));
+    if (ex) { if (!ex.inList || e.qte) addProduct(ex, e.qte || ex.qte); }
+    else { const r = guessRayon(e.nom); addProduct({ id: slug(e.nom) || uid(), nom: e.nom, rayon: r, ic: iconFor(e.nom, r), n: 0 }, e.qte); }
+    clearSearch(); $('co-q').focus();
+  });
+  // fiche article (appui long)
+  let edId = null;
+  const SPEC = ['x2', 'x3', 'x6', '500 g', '1 kg', '1 L', 'Bio', 'Grand format'];
+  function openEditor(pOrId) {
+    const p = typeof pOrId === 'string' ? products().find((x) => x.id === pOrId) : pOrId;
+    if (!p) return;
+    edId = p.id;
+    $('co-sh-ic').textContent = p.ic; $('co-sh-nom').value = p.nom; $('co-sh-qte').value = p.qte || '';
+    const sel = $('co-sh-rayon'); if (!sel.options.length) RAYONS.forEach(([r, l, i]) => { const o = el('option', null, i + '  ' + l); o.value = r; sel.append(o); });
+    sel.value = p.rayon || 'autres';
+    $('co-sh-chips').replaceChildren(...SPEC.map((s) => { const c = el('button', 'hb-chip', s); c.type = 'button'; c.addEventListener('click', () => { $('co-sh-qte').value = s; }); return c; }));
+    $('co-sh-ok').textContent = p.inList ? 'Enregistrer' : 'Ajouter à la liste';
+    const del = $('co-sh-del');
+    del.hidden = !p.inList && (p.builtin || !p.doc);
+    del.textContent = p.inList ? 'Retirer de la liste' : 'Supprimer l’article';
+    $('co-sh-meta').textContent = p.doc && p.n ? 'Acheté ' + p.n + (p.n > 1 ? ' fois' : ' fois') + (p.par ? ' · ajouté par ' + p.par : '') : (p.par ? 'Ajouté par ' + p.par : '');
+    $('co-sheet').hidden = false;
+    requestAnimationFrame(() => $('co-sheet').classList.add('in'));
+  }
+  function closeEditor() { const s = $('co-sheet'); s.classList.remove('in'); s.hidden = true; edId = null; }
+  $('co-sheet').addEventListener('click', (e) => { if (e.target.id === 'co-sheet') closeEditor(); });
+  $('co-sh-x').addEventListener('click', closeEditor);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('co-sheet').hidden) closeEditor(); });
+  $('co-sh-rayon').addEventListener('change', () => { $('co-sh-ic').textContent = iconFor($('co-sh-nom').value, $('co-sh-rayon').value); });
+  $('co-sh-form').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const p = products().find((x) => x.id === edId); if (!p) { closeEditor(); return; }
+    const nom = cap($('co-sh-nom').value.trim()) || p.nom, rayon = $('co-sh-rayon').value;
+    putItem(p, { nom, rayon, ic: iconFor(nom, rayon), qte: $('co-sh-qte').value.trim(), fait: false, arch: false, par: p.inList ? (p.par || me()) : me(), ts: p.inList ? (p.doc && p.doc.ts) || Date.now() : Date.now() });
+    if (!p.inList) justAdded.add(p.id);
+    closeEditor(); drawCourses(); badges();
+  });
+  $('co-sh-del').addEventListener('click', () => {
+    const p = products().find((x) => x.id === edId); closeEditor(); if (!p) return;
+    if (p.inList) unlist(p); else { S.del('courses/' + p.id); drawCourses(); badges(); }
   });
 
   // ---------------- Tâches ménagères ----------------
